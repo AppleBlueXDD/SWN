@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SWN Staff Call</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
+      background: url('https://cdn.discordapp.com/attachments/1373628846502580276/1373631306998743101/IMG_8941.JPG?ex=682b1d58&is=6829cbd8&hm=d95834ff0cc1fc980338c9c60b9e3d2406f732cdf64145c7b1ded83e3c71bb95') no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      backdrop-filter: blur(8px);
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+    }
+
+    .title {
+      font-size: 32px;
+      font-weight: 600;
+      margin-bottom: 40px;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    }
+
+    .button {
+      background-color: #5865F2;
+      color: white;
+      padding: 16px 32px;
+      border: none;
+      border-radius: 12px;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transition: all 0.25s ease;
+      margin-bottom: 60px;
+    }
+
+    .button:hover {
+      background-color: #4752c4;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 20px;
+      font-size: 14px;
+      color: #ffffffb0;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="title">SWN Staff Calling System</div>
+    <button class="button" onclick="callStaff()">Call Staff</button>
+    <div class="footer">Developed by Apple Blue ©</div>
+  </div>
+
+  <script>
+    function callStaff() {
+      fetch("https://discord.com/api/webhooks/1373629000144126092/LmYxaOB_cKqsJLyc7glIS0Wm83GSgsmNEuBmVNQ91PrLikriIDIUcA-amQNycliSYwA6", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          content: "📣 A customer has requested staff assistance!"
+        })
+      }).then(response => {
+        if (response.ok) {
+          alert("Staff has been notified.");
+        } else {
+          alert("Error: Unable to send the request.");
+        }
+      }).catch(error => {
+        alert("Connection error.");
+        console.error(error);
+      });
+    }
+  </script>
+</body>
+</html>
